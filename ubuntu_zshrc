@@ -13,15 +13,15 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 
-alias tweakzsh="gedit $HOME/.zshrc"
-alias reload="source $HOME/.zshrc && echo '>> OH MY, ZSH configurations are reloaded!'"
+alias tweakzsh="vim $HOME/.zshrc"
+alias reload="source $HOME/.zshrc && echo '>>> OH MY ZSH configurations are reloaded!'"
 alias auu="sudo apt update && sudo apt upgrade -y"
-alias clean="rm -rf build/ log/ install/ && echo '>> Remove build/ log/ install/'"
-alias build="colcon build && source ./install/setup.zsh && echo '>> Build && source successful'"
-alias rebuild="rm -rf build/ log/ install/ && colcon build & echo '>> Rebuild successful'"
-alias load="source ./install/setup.zsh"
-alias run="source ./install/setup.zsh && ros2 launch auto_aim launch.py"
-alias bar="echo '>> Build and Run\n' && colcon build && source ./install/setup.zsh && ros2 launch auto_aim launch.py"
+alias clean="echo '>>> clean cache' && rm -rf build/ log/ install/ && echo '>>> Remove build/ log/ install/'"
+alias build="echo '>>> Build Project' && colcon build --symlink-install && source ./install/setup.zsh && echo '>>> Build && source successful'"
+alias rebuild="echo '>>> Rebuild Project' && rm -rf build/ log/ install/ && colcon build --symlink-install && echo '>>> Rebuild successful'"
+alias load="echo '>>> Source setup.zsh' && source ./install/setup.zsh"
+alias run="echo '>>> Source and Run\n' && source ./install/setup.zsh && ros2 launch auto_aim launch.py"
+alias bar="echo '>>> Build and Run\n' && colcon build --symlink-install && source ./install/setup.zsh && ros2 launch auto_aim launch.py"
 
 # >>> fishros initialize >>>
 source /opt/ros/humble/setup.zsh
@@ -37,3 +37,9 @@ autoload -U compinit && compinit -u
 
 eval "$(starship init zsh)"
 
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
+# Preview file content using bat (https://github.com/sharkdp/bat)
+export FZF_CTRL_T_OPTS="
+  --preview 'batcat -n --color=always {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
