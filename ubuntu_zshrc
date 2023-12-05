@@ -8,10 +8,10 @@ plugins=(
 	git
 	zsh-autosuggestions
 	zsh-syntax-highlighting
+	thefuck
 )
 
 source $ZSH/oh-my-zsh.sh
-
 
 alias tweakzsh="vim $HOME/.zshrc"
 alias reload="source $HOME/.zshrc && echo '>>> OH MY ZSH configurations are reloaded!'"
@@ -44,3 +44,7 @@ source /usr/share/doc/fzf/examples/completion.zsh
 export FZF_CTRL_T_OPTS="
   --preview 'batcat -n --color=always {}'
   --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+
+export PATH="$PATH:$HOME/.local/bin"
+eval $(thefuck --alias FUCK)
+
