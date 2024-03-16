@@ -4,6 +4,10 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
 
+# thefuck
+export PATH="$PATH:$HOME/.local/bin"
+eval $(thefuck --alias)
+
 plugins=(
 	git
 	zsh-autosuggestions
@@ -23,6 +27,7 @@ alias load="echo '>>> Source setup.zsh' && source ./install/setup.zsh"
 alias run="echo '>>> Source and Run\n' && source ./install/setup.zsh && ros2 launch auto_aim launch.py"
 alias bar="echo '>>> Build and Run\n' && colcon build --symlink-install && source ./install/setup.zsh && ros2 launch auto_aim launch.py"
 alias debug="source ./install/setup.zsh && ros2 launch foxglove_bridge foxglove_bridge_launch.xml"
+alias loadros="source /opt/ros/humble/setup.zsh"
 
 # >>> fishros initialize >>>
 source /opt/ros/humble/setup.zsh
@@ -48,3 +53,4 @@ export FZF_CTRL_T_OPTS="
 export PATH="$PATH:$HOME/.local/bin"
 eval $(thefuck --alias FUCK)
 
+alias help="tldr"

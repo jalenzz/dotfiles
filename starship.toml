@@ -1,9 +1,13 @@
-# "$schema" = 'https://starship.rs/config-schema.json'
+"$schema" = 'https://starship.rs/config-schema.json'
 
 add_newline = true
 
 [line_break]
-disabled = true
+disabled = false
+
+[character] # 此模块名称为 'character'
+success_symbol = '[➜](bold green)' # 将 'success_symbol' 片段设置成颜色为 'bold green' 的 '➜'  
+error_symbol = '[➜](bold red)'
 
 [aws]
 symbol = "  "
@@ -142,3 +146,14 @@ symbol = " "
 
 [scala]
 symbol = " "
+
+[custom.emoji]
+description = "Displays a (pseudo) random emoji for each prompt"
+# change the content of the EMOJIS array to your liking and replace the
+# number 12 with the number of items in the array, minus one
+command = "bash --norc --noprofile -c 'PROMPT_EMOJI=(⛵️ 🛰 🪐 🚀 🧡 🔭 🌍 💫 ☄️ ✨ 🌠 🌌 ⭐️ 🐶 🐱 🐭 🐹 🐰 🐻 🐼 🐨 🐯 🦁 🐮 🐷 🐽 🐵 🙈 🙉 🙊 🐒 🐔 🐧 🐦 🐤 🐣 🐥 🐺 🐗 🐴 🦄 🐝 🐛 🐌 🐜 🕷 🦂 🐠 🐟 🐡 🐬 🐳 🐋 🐆 🐅 🐃 🐂 😀 😬 😁 😃 😄 😅 😆 😇 😉 😊 🙂 🙃 😋 😌 😍 😘 😗 😙 😚 😜 😝 😛 🤑 🤓 😎 🤗 😏 😶 😐 😑 😒 🙄 🤔 😳 😞 😟 😠 😔 😕 🙁 😣 😖 😯 😦 😧 😵 😲 🤐 👦 👧 👨 👩 👴 👵 👶 👱 👮 👲 👳 👷 👸 💂); EMOJI_INDEX=$(( $RANDOM % 117 + 0 )); echo ${PROMPT_EMOJI[$EMOJI_INDEX]}'"
+# if you are on windows, replace "true" with "1"
+when = "true"
+shell = ["bash", "--noprofile", "--norc"]
+format = "$output "
+
